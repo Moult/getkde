@@ -1,3 +1,26 @@
-GetKDE is an alternative to KDE.org.
+GetKDE.org is an alternative to KDE.org.
 
 Let's make a better vehicle to spread the word of KDE.
+
+A little history: the original KDE.org redesign began a long time ago, but
+essentially it was a redesigned frame with just the existing text copied back
+into the frame without any real design consideration. The KDE-www war project
+was started to raise awareness about how to think design first, art second. In
+response, the KDE-www team started up the neverland project. Due to lack of
+progress and fundamental flaws (eg: objective to move away from Oxygen), this
+has been forked to use the original work from the KDE-www war and turn it into
+GetKDE.org
+
+View the online snapshot available at http://getkde.org/
+
+Objectives:
+1) Replicate all the functionality in an improved manner from KDE.org
+2) Align with KDE branding, including:
+ a) Visual branding, Oxygen, Air, Plasma
+ b) Promotional branding, KDE is a community
+ c) Jargon branding, Applications, Workspaces, Infrastructure
+3) Serve as an introductory hub to the three aspects of KDE:
+ a) Explore how KDE can benefit you
+ b) Connect to the KDE community
+ c) Contribute to KDE
+4) Raise design and brand awareness for other KDE developers
