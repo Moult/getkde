@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+/*
+ * GetKDE.com is an experimental alternative to KDE.org by Dion Moult
+ * Note that this document is a work in progress. It is full of technical hackery.
+ *
+ * Copyright 2011 (c)
+ */
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<!-- Lato is KDE's official font -->
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery.featureList-1.0.0.js"></script>
+
+		<style type="text/css">
+			.window {
+				margin-bottom: 20px;
+				background: #efeeee; /* Old browsers */
+				background: -moz-linear-gradient(top,  #efeeee 0%, #e0dfde 100%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efeeee), color-stop(100%,#e0dfde)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  #efeeee 0%,#e0dfde 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  #efeeee 0%,#e0dfde 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  #efeeee 0%,#e0dfde 100%); /* IE10+ */
+				background: linear-gradient(top,  #efeeee 0%,#e0dfde 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efeeee', endColorstr='#e0dfde',GradientType=0 ); /* IE6-9 */
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				-webkit-box-shadow:  0px 5px 15px 0px rgba(000, 000, 000, 0.3);
+				-moz-box-shadow:  0px 5px 15px 0px rgba(000, 000, 000, 0.3);
+				box-shadow:  0px 5px 15px 0px rgba(000, 000, 000, 0.3);
+				overflow: hidden;
+			}
+
+			.window_inner {
+				background-image: url('images/window_glow.png');
+				background-repeat: no-repeat;
+				padding: 15px;
+			}
+
+			div#feature_list {
+				width: 900px;
+				height: 450px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			div#feature_list ul {
+				position: absolute;
+				top: 0;
+				list-style: none;	
+				padding: 0;
+				margin: 0;
+			}
+
+			ul#tabs {
+				left: 0;
+				z-index: 2;
+				text-align: left;
+				width: 560px;
+			}
+
+			ul#tabs li {
+				font-size: 14px;
+				line-height: 60px;
+			}
+
+			ul#tabs li span {
+				font-size: 12px;
+			}
+			
+			ul#tabs li img {
+				border: none;
+				float: left;
+				margin: 0px 10px 0 0;
+			}
+
+			ul#tabs li a {
+				color: #333;
+				opacity: 0.05;
+				text-decoration: none;	
+				display: block;
+				padding: 10px;
+				height: 60px;
+				outline: none;
+			}
+
+			ul#tabs li a:hover {
+				background:  url('feature-tab-current.png');
+				font-size: 20px;
+				text-shadow: 0px 0px 15px #b2eaff, 0px 1px 0px #FFF;
+				opacity: 1;
+			}
+
+			ul#tabs li a.current {
+				font-size: 30px;
+				font-weight: bold;
+				letter-spacing: -1px;
+				text-shadow: 0px 0px 2px #555, 0px 0px 15px #b2eaff, 0px 1px 0px #555;
+				opacity: 1;
+				color: #FFF;
+			}
+
+			ul#tabs li a.current:hover {
+				text-decoration: none;
+				cursor: default;
+			}
+
+			ul#output {
+				right: 0;
+				width: 900px;
+				height: 450px;
+				position: relative;
+			}
+
+			ul#output li {
+				position: absolute;
+				width: 900px;
+				height: 450px;
+			}
+
+			ul#output li a {
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				padding: 8px 12px;
+				text-decoration: none;
+				font-size: 11px;
+				color: #FFF;
+				background: #000;
+				-moz-border-radius: 5px;
+			}
+			
+			ul#output li a:hover {
+				background: #D33431;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.featureList(
+					$("#tabs li a"),
+					$("#output li"), {
+						start_item: 0
+					}
+				);
+			});
+		</script>
+
+
+        <link rel="stylesheet" type="text/css" href="reset.css" />
+		<style type="text/css">
+			html {
+				background-image: url('images/footer_bg.png');
+				background-position: bottom;
+				background-repeat: repeat-x;
+			}
+			body {
+				background-image: url('images/white_texture.png');
+				font-family: 'Lato', 'Arial', sans-serif;
+				font-size: 11px;
+			}
+
+			#wrapper {
+				width: 910px;
+				margin-left: auto;
+				margin-right: auto;
+				background-image: url('images/bg_glow.png');
+				background-repeat: no-repeat;
+				background-position: center top;
+			}
+			#nav {
+				background-image: url('images/nav_software.png');
+				background-repeat: no-repeat;
+				width: 910px;
+				height: 80px;
+			}
+
+			#nav ul {
+				float: right;
+				margin-right: 5px;
+				margin-top: 33px;
+			}
+
+			#nav li {
+				float: left;
+				text-align: center;
+				text-shadow: 0px 1px 0px #FFF;
+				text-transform: uppercase;
+			}
+
+			#nav_software { width: 108px; }
+			#nav_community { width: 103px; }
+			#nav_development { width: 131px; }
+
+			#intro_icons {
+				background-image: url('images/intro_glow.png');
+				background-position: center bottom;
+				background-repeat: no-repeat;
+				height: 135px;
+			}
+
+			#intro_icon_discover, #intro_icon_community, #intro_icon_develop {
+				background-repeat: no-repeat;
+				background-position: center center;
+				width: 33%;
+				height: 128px;
+				float: left;
+			}
+
+			#intro_icon_discover {
+				background-image: url('images/intro_icon_discover.png');
+			}
+
+			#intro_icon_community {
+				background-image: url('images/intro_icon_community.png');
+			}
+
+			#intro_icon_develop {
+				background-image: url('images/intro_icon_develop.png');
+			}
+
+			#intro {
+				background-image: url('images/intro_bg.png');
+				width: 914px;
+				height: 108px;
+			}
+
+			#intro_content {
+				margin-left: 7px;
+				margin-right: 7px;
+			}
+
+			#intro h2 {
+				height: 30px;
+				width: 299px;
+				float: left;
+				font-size: 15px;
+				font-weight: bold;
+				text-shadow: 0px 1px 0px #FFF;
+				color: #222;
+				text-transform: uppercase;
+				text-align: center;
+				line-height: 28px;
+			}
+
+			.window_inner h2 {
+				font-size: 15px;
+				font-weight: bold;
+				text-shadow: 0px 1px 0px #FFF;
+				color: #222;
+				text-transform: uppercase;
+				text-align: left;
+				height: 30px;
+				line-height: 28px;
+				margin-top: -10px;
+				vertical-align: top;
+			}
+
+			.intro_divider {
+				background-image: url('images/intro_divider.png');
+				width: 299px;
+				height: 2px;
+			}
+
+			.intro_text_wrapper {
+				width: 300px;
+				text-align: center;
+				float: left;
+				margin-top: 15px;
+			}
+
+			.intro_text {
+				line-height: 30px;
+			}
+
+			.intro_button {
+				width: 95px;
+				height: 31px;
+				text-align: center;
+				line-height: 30px;
+				background-image: url('images/intro_button.png');
+				text-transform: uppercase;
+				text-shadow: 0px 1px 0px #FFF;
+				display: inline-block;
+				margin-right: 5px;
+			}
+
+			#footer_divider {
+				background-image: url('images/footer_divider.png');
+				background-repeat: no-repeat;
+				background-position: center bottom;
+				height: 2px;
+				width: 900px;
+				padding-top: 50px;
+			}
+
+			#footer_wrapper {
+				width: 100%;
+				height: 303px;
+				background-position: center bottom;
+				background-repeat: repeat-x;
+			}
+
+			#footer {
+				margin-left: auto;
+				margin-right: auto;
+				width: 900px;
+				height: 303px;
+				background-image: url('images/footer_bg_glow.png');
+				background-position: center bottom;
+				background-repeat: no-repeat;
+			}
+
+			.footer_header {
+				background-image: url('images/footer_header.png');
+				width: 100px;
+				height: 21px;
+				line-height: 21px;
+				float: left;
+			}
+
+			.footer_column {
+				height: 160px;
+				margin-top: 50px;
+				width: 20%;
+				float: left;
+				color: #999;
+			}
+
+			.footer_column:hover {
+				color: #333;
+			}
+
+			.footer_header h4 {
+				margin-left: 5px;
+				font-weight: bold;
+			}
+
+			#footer_icon_software, #footer_icon_community, #footer_icon_development, #footer_icon_about, #footer_icon_giveback {
+				float: left;
+				margin-right: 5px;
+				width: 22px;
+				height: 22px;
+			}
+
+			#footer_icon_software {
+				background-image: url('images/footer_icon_software.png');
+			}
+
+			#footer_icon_community {
+				background-image: url('images/footer_icon_community.png');
+			}
+
+			#footer_icon_development {
+				background-image: url('images/footer_icon_development.png');
+			}
+
+			#footer_icon_about {
+				background-image: url('images/footer_icon_about.png');
+			}
+
+			#footer_icon_giveback {
+				background-image: url('images/footer_icon_giveback.png');
+			}
+
+			#footer_bar {
+				clear: both;
+				background-image: url('images/footer_bar.png');
+				width: 910px;
+				height: 41px;
+				position: relative;
+				bottom: 0px;
+			}
+
+			#footer_bar input, #footer_bar img, #footer_bar span {
+				float: right;
+			}
+
+			#footer_bar img {
+				margin-right: 15px;
+				margin-top: 12px;
+			}
+
+			#footer_bar input {
+				margin-right: 15px;
+				position: relative;
+				top: 5px;
+				font-weight: bold;
+				color: #444;
+				height: 35px;
+				width: 197px;
+				border: none;
+				background: none;
+			}
+
+			#footer_text {
+				float: left;
+				position: relative;
+				top: 2px;
+				line-height: 41px;
+				margin-left: 15px;
+				font-size: 10px;
+				width: 620px;
+			}
+
+			.footer_column ul {
+				clear: both;
+				margin-left: 27px;
+			}
+
+			.footer_column li {
+				line-height: 20px;
+			}
+
+			.button {
+				color: #000;
+			}
+
+			.button:hover {
+				color: #0D60CF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="nav">
+				<ul style="float: left;">
+					<li id="nav_software" style="margin-left: 60px; color:#b2373a; font-weight: bold;">Software</li>
+				</ul>
+				<ul>
+					<li id="nav_community">Community</li>
+					<li id="nav_development">Development</li>
+				</ul>
+			</div>
+			<br /><br />
+			<center>
+
+				<img src="images/explore1.png" style="margin-top: -105px;" alt="" />
+
+				<br />
+				<div style="float: left; width: 30%;">
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">Apps</span>
+				</div>
+
+				<div style="float: left; width: 30%;">
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">Workspaces</span>
+				</div>
+
+				<div style="float: left; width: 30%;">
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">Framework</span>
+				</div>
+
+				<div style="clear: both; margin-bottom: 50px;"><?div>
+				<!--
+				<div style="clear: both; margin-top: 50px; margin-bottom: 30px;">
+					<span style="font-size: 30px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">KDE presents the KDE Software Compilation</span>
+					-->
+				</div>
+
+			</center>
+
+			<div style="float: left; width: 354;">
+				<img src="images/explore2.png" alt="" />
+			</div>
+			<div style="float: left; width: 546px;">
+				<p style="margin-bottom: 20px; font-size: 30px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">Turn your Windows, Mac or Linux into<br />Something beautiful.<br />Something filled with features.<br />Something that thinks the way you think.</p>
+				<p style="margin-bottom: 20px; font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">Imagine typing in a name and the computer knows who it is. Imagine your desktop become your morning newspaper. Imagine your music player helping you learn more about your favourite artists.</p>
+				<p style="margin-bottom: 20px; font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">KDE is a worldwide community who cares about their computers. Join KDE and share the experience.</p>
+
+				<p style="margin-bottom: 20px; font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">I use:</p>
+
+				<div class="window">
+					<div class="window_inner">
+						<div style="float: left;">
+							<h2>Linux, FreeBSD, Unix + KDE
+							<div class="intro_divider"></div>
+							</h2>
+							KDE offers the full experience: Apps, Workspaces and Framework.<br />
+						</div>
+
+						<div style="float: right;">
+							<img src="images/mini-linux-kde.png" style="vertical-align: middle; margin-right: 5px;" /><a href="begin_unix.html" class="button"><div class="intro_button">BEGIN</div></a>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+
+				<p style="margin-bottom: 20px; font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif;">or alternatively</p>
+
+				<div class="window">
+					<div class="window_inner">
+						<div style="float: left;">
+							<h2>Windows, Mac, Tablets and Mobiles
+							<div class="intro_divider"></div>
+							</h2>
+							KDE offers an awesome Apps collection and a great Framework for developers<br />
+						</div>
+						<div style="float: right;">
+							<img src="images/mini-windows-kde.png" style="vertical-align: middle; margin-right: 5px;" />
+							<img src="images/mini-mac-kde.png" style="vertical-align: middle; margin-right: 5px;" />
+							<img src="images/mini-mobile-kde.png" style="vertical-align: middle; margin-right: 5px;" />
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+
+			</div>
+
+			<div style="clear: both;"></div>
+
+		</div>
+
+		<div id="footer_wrapper">
+			<div id="footer">
+				<div id="footer_divider"></div>
+
+				<div class="footer_column">
+					<div id="footer_icon_software"></div>
+					<div class="footer_header">
+						<h4>Software</h4>
+					</div>
+					<ul>
+						<li>Plasma Workspaces</li>
+						<li>Applications</li>
+						<li>Get KDE Software</li>
+						<li>Troubleshooting</li>
+					</ul>
+				</div>
+
+				<div class="footer_column">
+					<div id="footer_icon_community"></div>
+					<div class="footer_header">
+						<h4>Community</h4>
+					</div>
+					<ul>
+						<li>Get Involved</li>
+						<li>Get in Touch</li>
+						<li>User Wiki</li>
+						<li>Skins &amp; Extensions</li>
+						<li>Local Societies</li>
+					</ul>
+				</div>
+
+				<div class="footer_column">
+					<div id="footer_icon_development"></div>
+					<div class="footer_header">
+						<h4>Development</h4>
+					</div>
+					<ul>
+						<li>Development Platform</li>
+						<li>Technology Wiki</li>
+						<li>Mailing Lists</li>
+						<li>Security Advice</li>
+						<li>Translations</li>
+						<li>Bug Tracker</li>
+					</ul>
+				</div>
+
+				<div class="footer_column">
+					<div id="footer_icon_about"></div>
+					<div class="footer_header">
+						<h4>About</h4>
+					</div>
+					<ul>
+						<li>KDE Foundation</li>
+						<li>Events</li>
+						<li>History</li>
+						<li>Awards</li>
+						<li>Code of Conduct</li>
+					</ul>
+				</div>
+
+				<div class="footer_column">
+					<div id="footer_icon_giveback"></div>
+					<div class="footer_header">
+						<h4>Give Back</h4>
+					</div>
+					<ul>
+						<li>Donate</li>
+						<li>Non-Financial</li>
+						<li>In the Press</li>
+						<li>Join the Game</li>
+					</ul>
+				</div>
+
+
+				<div id="footer_bar">
+					<div id="footer_text">
+						GetKDE.org is an experimental alternative to KDE.org by Dion Moult
+						<span>Legal Info</span>
+					</div>
+					<img src="images/search_icon.png" alt="Search" />
+					<input type="text" value="Search..." id="search" />
+				</div>
+			</div>
+		</div>
+
+
+
+	</body>
+</html>
