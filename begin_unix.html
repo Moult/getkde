@@ -14,7 +14,7 @@
 		<!-- Lato is KDE's official font -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="jquery.featureList-1.0.0.js"></script>
+		<script type="text/javascript" src="jquery.scrollTo-1.4.2-min.js"></script>
 
 		<style type="text/css">
 			.window {
@@ -141,14 +141,21 @@
 		</style>
 
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$.featureList(
-					$("#tabs li a"),
-					$("#output li"), {
-						start_item: 0
-					}
-				);
-			});
+			function switchto(item) {
+				var items = new Array("covers_the_basics", "virtual_desktops", "type_n_go", "integrated_notifications", "customise_everything", "smooth_intuitive_effects", "alternative_workflows", "full_window_control", "knows_what");
+				$.scrollTo($('#overview'), 800);
+				$.each(items, function(index, value) {
+					if ($("#" + value).css('display') == 'block') {
+						$("#" + value + "_blurb").css('color', '#999');
+						$("#" + value).fadeOut('slow', function() {
+							$("#" + item).fadeIn();
+							$("#" + item + "_blurb").css('color', '#000');
+						});
+					};
+				});
+
+
+			}
 		</script>
 
 
@@ -424,7 +431,13 @@
 			.button:hover {
 				color: #0D60CF;
 			}
+
+			.item div:hover {
+				color: #000 !important;
+			}
 		</style>
+		<script type="text/javascript">
+		</script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -440,100 +453,362 @@
 			<br /><br />
 			<center>
 
-				<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: inline-block;">The full KDE experience begins simply. Say hello to the workspace.</span>
+				<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: inline-block;">The full KDE experience begins simply. Say hello to the workspace.<div id="overview"></div></span>
+				
 
-				<img src="images/workspace.png" alt="" />
+				<div id="covers_the_basics">
+					<img src="images/workspace.png" alt="" />
 
-				<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">App menu. Task items. System tray. Clock. But you already know all that.</span>
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">App menu. Task items. System tray. Clock. But you already know all that.</span>
 
 
-				<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
-					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Choose from thousands of themes</span>
-					Our community provides thousands of colourschemes, icons, window and desktop styles, splash screens -  brought right to your desktop with a click of a button.
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Choose from thousands of themes</span>
+						Our community provides thousands of colourschemes, icons, window and desktop styles, splash screens -  brought right to your desktop with a click of a button.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Accessible to all</span>
+						Full control over contrast, font sizes and magnification.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Available in more than 50 languages</span>
+						Translations are constantly being updated every version to introduce new languages.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Speedy even on low-end hardware</span>
+						A workspace only needs ~256MB RAM to run, and has options to disable effects and fine-tune performance.
+					</div>
 				</div>
 
-				<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
-					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Accessible to all</span>
-					Full control over contrast, font sizes and magnification.
+				<div id="virtual_desktops" style="display: none;">
+					<img src="images/virtualdesktops.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Too many windows, too little space. Solved.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">As much or little as you want</span>
+						There shouldn't be a limit on how much space you need to work. Add or remove as many as you need.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Quickly overview your work</span>
+						A minified version of your desktops is available at all times via a pager. Zoom in and out to see everything at once.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Theme separately</span>
+						Each virtual desktop can be tailored to what you put on it.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Think spatially</span>
+						Very much like your physical worktable, spatial groupings makes windows easier to find and switch between.
+					</div>
 				</div>
 
-				<br style="clear: both;" />
+				<div id="type_n_go" style="display: none;">
+					<img src="images/typengo.png" alt="" />
 
-				<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
-					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Available in over 50 languages</span>
-					Translations are constantly being updated every version to introduce new languages.
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">A powerful little box that completes your sentences.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Find information</span>
+						Not just finding files and folders, but things you don't expect like contacts and emails too throughout your computer.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Quick-launch apps</span>
+						Why hunt through a menu when you can get it instantly?
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Recent documents</span>
+						You were just working on it, so you shouldn't spent hours getting it again.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Calculate</span>
+						Anytime you need a sum worked out, just punch the numbers in.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Web bookmarks &amp; favourites</span>
+						With the internet becoming an integral part of our lives, your desktop shouldn't get in your way.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Manage sessions</span>
+						Switch windows, login sessions, activities and suspend / hibernate instantly when you're on the go.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Pop-up widgets</span>
+						If you use a widget extensively, you can launch it as a standalone app.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Modes that suit you</span>
+						If that isn't enough, more command plugins and be enabled and configured.
+					</div>
 				</div>
 
-				<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
-					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Speedy even on low-end hardware</span>
-					A workspace only needs ~256MB RAM to run, and has options to disable effects and fine-tune performance.
+				<div id="integrated_notifications" style="display: none;">
+					<img src="images/notify.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Your personal secretary that's there when you need it, and hidden when you don't.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Logged whilst your away</span>
+						Notifications wait until you're ready to deal with them rather than bother you while you're working.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Monitor processes</span>
+						Easily track progress when transferring files or downloading content rather than have multiple mini-windows clog up your screen.
+					</div>
+				</div>
+
+				<div id="customise_everything" style="display: none;">
+					<img src="images/customiseeverything.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Decide exactly what you want, where, and when.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">It's not just placing widgets</span>
+						Everything, including panels and dashboards can be moved around, resized and rotated to exactly what you believe your desktop should be like.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">More where that came from</span>
+							Our community provides hundreds of extra useful widgets -  brought right to your desktop with a click of a button.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Better than a calendar and clock</span>
+						Widgets that automatically sort your files for you, connect to remote services, alternative launchers and task managers, music players, and web browsers.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Share across the network</span>
+							Share widget setups and activities throughout multiple computers.
+					</div>
+				</div>
+
+				<div id="smooth_intuitive_effects" style="display: none;">
+					<img src="images/effectssmooth.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Just little details that make the polish shine without disturbing you.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">A modern desktop</span>
+						From subtle blurs and glows as you hover over items to full blown effects like flipping through your windows.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Part of your system</span>
+							Effects aren't an add-on, they're part of the workspace. This means fast, stable, and responsive.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Doesn't slow you down</span>
+						Only turn on effects which help the way you work, and turn the rest off. Disable everything for old computers.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Not just the desktop</span>
+							A slight glint here, a shadow there, and discover how beautiful your windows and applications can look like.
+					</div>
+				</div>
+
+				<div id="alternative_workflows" style="display: none;">
+					<img src="images/workflow.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Dedicated interfaces for how you work.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Clean</span>
+						When you just want nothing and nothing more, we've got your back.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Newspaper</span>
+							Turn your desktop into part of your morning routine with your regular feeds and mail side by side.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Launcher</span>
+						Excellent for smaller devices where screen space is valuable, your desktop turns into a search and launch platform.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Photos</span>
+							Just like your desktop at home, your desktop can be your photo screen.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Classic</span>
+						For those who like it the way it was and always should be done, we've got the classic desktop covered.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Custom-made</span>
+							Along with the ability to customise everything, nothing's stopping you from building your own setup.
+					</div>
+				</div>
+
+				<div id="full_window_control" style="display: none;">
+					<img src="images/fullwindowcontrol.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">Clever window tricks you can't live without.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Snap &amp; tile</span>
+						Windows snap to each other and screen edges - allowing you to split your screen into halves or quarters. Full tiling support available.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Control display order</span>
+							Push windows above and below everything else in the stack, or make them appear across all desktops.
+					</div>
+
+					<br style="clear: both;" />
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Window tabbing</span>
+						Combine multiple related windows into a single tabbed group for better organisation.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Detailed presets</span>
+							Have it so specific applications or windows always appear in a certain way, such as size, location, or in a style you've designed yourself.
+					</div>
+				</div>
+
+				<div id="knows_what" style="display: none;">
+					<img src="images/knowswhat.png" alt="" />
+
+					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 20px; display: block; margin-top: 20px;">When your computer only shows you what's related to what you're doing.</span>
+
+
+					<div style="float: left; width: 400px; text-align: left; margin-right: 10px; margin-bottom: 15px; margin-left: 10px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Helps you focus</span>
+						Workspaces offer a new way of organising what we do through Activities. Group windows and workspace setups into what's best for each task. Suspend and resume exactly where you left off from a previous task.
+					</div>
+
+					<div style="float: right; width: 400px; text-align: left; margin-right: 10px; margin-left: 10px; margin-bottom: 15px;">
+						<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Beyond the desktop</span>
+							Imagine if your computer could show you only the contacts, emails, and files that were related to what you were working on. 
+					</div>
 				</div>
 
 				<div style="clear: both; height: 70px;"></div>
 
 
+				<a class="item" href="#no" onclick="switchto('covers_the_basics')">
 				<img src="images/panel.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
-
-
+				<div id="covers_the_basics_blurb" style="color: #000; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Covers the basics</span>
 					Familiar and easy to pick up. No nasty suprises.
 				</div>
+				</a>
 
+				<a class="item" href="#no" onclick="switchto('virtual_desktops')">
 				<img src="images/virtual.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="virtual_desktops_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Virtual Desktops</span>
 					One desktop isn't enough space sometimes. Why not more?
 				</div>
+				</a>
 
+				<a class="item" href="#no" onclick="switchto('type_n_go')">
 				<img src="images/runner.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="type_n_go_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Type &amp; Go</span>
 					Begin typing, and search, launch apps, calculate, browse the web, and more.
 				</div>
+				</a>
 
 				<div style="clear: both; height: 40px;"></div>
 
+				<a class="item" href="#no" onclick="switchto('integrated_notifications')">
 				<img src="images/notifications.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="integrated_notifications_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Integrated notifications</span>
 					Unobtrusive and centralised, so it doesn't get in your way.
 				</div>
+				</a>
 
+				<a class="item" href="#no" onclick="switchto('customise_everything')">
 				<img src="images/customise.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="customise_everything_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Customise everything</span>
 					Modify panels and insert widgets based on how you work.
 				</div>
+				</a>
 
+				<a class="item" href="#no" onclick="switchto('smooth_intuitive_effects')">
 				<img src="images/effects.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="smooth_intuitive_effects_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Smooth, intuitive effects</span>
 					A beautiful, modern desktop that increases productivity.
 				</div>
+				</a>
 
 
 				<div style="clear: both; height: 40px;"></div>
 
+				<a class="item" href="#no" onclick="switchto('alternative_workflows')">
 				<img src="images/otherworkspaces.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="alternative_workflows_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Alternative workflows</span>
 					Sometimes you don't need a desktop. Sometimes you need to be yourself.
 				</div>
+				</a>
 
 
-
+				<a class="item" href="#no" onclick="switchto('full_window_control')">
 				<img src="images/windowcontrol.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="full_window_control_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Full window control</span>
 					Combine, tile, and pin windows, and share across activities and desktops.
 				</div>
+				</a>
 
+				<a class="item" href="#no" onclick="switchto('knows_what')">
 				<img src="images/knows.png" alt="" style="float: left; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;" />
-				<div style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
+				<div id="knows_what_blurb" style="color: #999; float: left; width: 125px; text-align: left; margin-right: 10px; margin-left: 10px;">
 					<span style="font-size: 20px; color: #777; font-weight: 300; text-shadow: 0px 1px 0px #FFF; font-family: 'Lato', sans-serif; margin-bottom: 10px; display: block;">Knows what you're working on</span>
 					Our life revolves around activities. Why doesn't your computer too?
 				</div>
+				</a>
 
 
 				<br style="clear: both;" />
